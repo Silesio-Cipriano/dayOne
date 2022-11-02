@@ -1,0 +1,21 @@
+{
+  "name": "dayOne",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "prisma": "^4.5.0",
+    "tsx": "^3.11.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.5.0",
+    "express": "^4.18.2",
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.7.0"
+  }
+}
