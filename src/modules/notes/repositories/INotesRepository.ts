@@ -8,6 +8,7 @@ interface INotesRepository {
   update(data: ICreateNoteDTO): Promise<Note>;
   delete(id: string): Promise<void>;
   findAll(): Promise<Note[]>;
+  findAllByUser(userId: string): Promise<Note[]>;
 }
 
 export { INotesRepository };

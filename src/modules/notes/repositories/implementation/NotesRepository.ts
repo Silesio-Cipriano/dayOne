@@ -9,9 +9,11 @@ class NotesRepository implements INotesRepository {
     title,
     description,
     image = '',
+    categoryId,
   }: ICreateNoteDTO): Promise<Note> {
     const note = await prismaClient.note.create({
       data: {
+        categoryId,
         userId,
         title,
         description,
@@ -66,6 +68,16 @@ class NotesRepository implements INotesRepository {
       },
     });
     return note;
+  }
+
+  async findAllByUser(userId: string): Promise<Note[]> {
+    const notes = await prismaClient.note.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+
+    return notes;
   }
 }
 export { NotesRepository };

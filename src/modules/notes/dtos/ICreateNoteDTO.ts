@@ -4,6 +4,7 @@ interface ICreateNoteDTO {
   description: string;
   image?: string;
   userId: string;
+  categoryId: string;
 }
 
 export { ICreateNoteDTO };

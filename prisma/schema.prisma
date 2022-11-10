@@ -18,8 +18,18 @@ model Note {
   createAt    DateTime @default(now())
   User        User     @relation(fields: [userId], references: [id])
   userId      String
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String
 
   @@map("notes")
+}
+
+model Category {
+  id    String @id @default(cuid())
+  title String
+  Note  Note[]
+
+  @@map("categories")
 }
 
 model User {

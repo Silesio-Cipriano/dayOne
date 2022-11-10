@@ -1,10 +1,12 @@
 import { Router } from 'express';
-import { CreateUserController } from '../controllers/CreateUserController';
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import { CreateUserController } from '../modules/accounts/useCases/createUser/CreateUserController';
 
 const usersRoutes = Router();
 
-const createUser = new CreateUserController();
+const createUserController = new CreateUserController();
 
-usersRoutes.post('/', createUser.handle);
+usersRoutes.use(ensureAuthenticated );
+usersRoutes.post('/', createUserController.handle);
 
 export { usersRoutes };

@@ -1,24 +1,87 @@
 import { User } from '@prisma/client';
+import { prismaClient } from '../../../../database/prismaClient';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUsersRepository } from '../IUsersRepository';
 
 export class UsersRepository implements IUsersRepository {
-  create(data: ICreateUserDTO): Promise<User> {
-    throw new Error('Method not implemented.');
+  async create({
+    username,
+    name,
+    email,
+    password,
+  }: ICreateUserDTO): Promise<User> {
+    const user = await prismaClient.user.create({
+      data: {
+        username,
+        name,
+        password,
+        email,
+        image: '',
+      },
+    });
+    return user;
   }
-  findById(id: string): Promise<User | null> {
-    throw new Error('Method not implemented.');
+
+  async findById(id: string): Promise<User | null> {
+    const user = await prismaClient.user.findFirst({
+      where: {
+        id: id,
+      },
+    });
+    return user;
   }
-  findByTitle(id: string): Promise<User | null> {
-    throw new Error('Method not implemented.');
+
+  async findByName(name: string): Promise<User | null> {
+    const user = await prismaClient.user.findFirst({
+      where: {
+        name: name,
+      },
+    });
+    return user;
   }
-  update(data: ICreateUserDTO): Promise<User> {
-    throw new Error('Method not implemented.');
+
+  async update({
+    id,
+    username,
+    name,
+    email,
+    password,
+  }: ICreateUserDTO): Promise<User> {
+    const user = await prismaClient.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        username,
+        name,
+        email,
+        password,
+      },
+    });
+    return user;
   }
-  delete(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+
+  async delete(id: string): Promise<void> {
+    await prismaClient.user.delete({
+      where: {
+        id: id,
+      },
+    });
   }
-  findAll(): Promise<User[]> {
-    throw new Error('Method not implemented.');
+
+  async findAll(): Promise<User[]> {
+    const users = await prismaClient.user.findMany();
+
+    return users;
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await prismaClient.user.findFirst({
+      where: {
+        email: email,
+      },
+    });
+
+    return user;
   }
 }

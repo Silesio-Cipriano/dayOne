@@ -1,30 +1,19 @@
 import { Note } from '@prisma/client';
-import { inject, injectable } from 'tsyringe';
+import { inject } from 'tsyringe';
 import { ICreateNoteDTO } from '../../dtos/ICreateNoteDTO';
 import { INotesRepository } from '../../repositories/INotesRepository';
 
-@injectable()
-class CreateNoteUseCase {
+export class UpdateNoteUseCase {
   constructor(
     @inject('NotesRepository')
-    private notesRepository: INotesRepository
+    private repository: INotesRepository
   ) {}
-
   async execute({
+    id,
     title,
     description,
     userId,
-    categoryId,
   }: ICreateNoteDTO): Promise<Note> {
-    const note = await this.notesRepository.create({
-      title,
-      description,
-      userId,
-      categoryId,
-    });
-
-    return note;
+    return await this.repository.update({ id, title, description, userId });
   }
 }
-
-export { CreateNoteUseCase };
