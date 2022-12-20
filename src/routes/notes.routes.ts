@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { AllNoteController } from '../controllers/AllNoteController';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 
 import { ensureNote } from '../middlewares/ensureNote';

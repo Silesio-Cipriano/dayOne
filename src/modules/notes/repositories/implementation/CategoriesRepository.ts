@@ -11,8 +11,9 @@ export class CategoriesRepository implements ICategoriesRepository {
       },
     });
   }
-  async create({ title }: ICreateCategoryDTO): Promise<Category|null> {
-    const category=await prismaClient.category.create({
+
+  async create({ title }: ICreateCategoryDTO): Promise<Category | null> {
+    const category = await prismaClient.category.create({
       data: {
         title: title,
       },
