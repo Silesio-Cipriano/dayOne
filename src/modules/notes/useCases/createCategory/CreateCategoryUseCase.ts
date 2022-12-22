@@ -1,5 +1,6 @@
-import { Category } from '@prisma/client';
+import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
+import { Category } from '@prisma/client';
 import { AppError } from '../../../../errors/AppError';
 import { ICreateCategoryDTO } from '../../dtos/ICreateCategoryDTO';
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
