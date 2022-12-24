@@ -1,14 +1,13 @@
 import { Router } from 'express';
-import { AllNoteController } from './controllers/AllNoteController';
-
-import { CreateNoteController } from './controllers/CreateNoteController';
+import { CreateNoteController } from './modules/notes/useCases/createNote/CreateNoteController';
+import { ListNotesController } from './modules/notes/useCases/listNotes/ListNotesController';
 
 const router = Router();
 
 const createNote = new CreateNoteController();
-const allNote = new AllNoteController();
+const listNotes = new ListNotesController();
 
 router.post('/note', createNote.handle);
-router.get('/note', allNote.handle);
+router.get('/note', listNotes.handle);
 
 export { router };

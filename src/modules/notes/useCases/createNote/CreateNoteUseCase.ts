@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { Note } from '@prisma/client';
 import { inject, injectable } from 'tsyringe';
 import { ICreateNoteDTO } from '../../dtos/ICreateNoteDTO';
