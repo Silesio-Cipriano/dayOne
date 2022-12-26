@@ -1,5 +1,6 @@
 import { User } from '@prisma/client';
 import { inject, injectable } from 'tsyringe';
+import { deleteFile } from '../../../../utils/file';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 
@@ -20,6 +21,7 @@ class UploadUserAvatarUseCase {
     if (user) {
       user.image = avatarFile;
       await this.repository.update(user);
+      await deleteFile(`./tmp/avatar/${user.image}`);
     }
   }
 }
