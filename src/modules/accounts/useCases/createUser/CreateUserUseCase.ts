@@ -10,7 +10,15 @@ export class CreateUserUseCase {
     @inject('UsersRepository')
     private repository: IUsersRepository
   ) {}
-  async execute({ username, name, email, password }: ICreateUserDTO) {
+  async execute({
+    username,
+    name,
+    email,
+    password,
+    createAt,
+    id,
+    image,
+  }: ICreateUserDTO) {
     const usernameExist = await this.repository.findByUsername(username);
 
     if (usernameExist) throw new AppError('Username already exist!', 401);

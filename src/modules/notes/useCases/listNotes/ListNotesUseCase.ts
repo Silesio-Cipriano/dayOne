@@ -1,8 +1,9 @@
 import 'reflect-metadata';
 import { Note } from '@prisma/client';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { INotesRepository } from '../../repositories/INotesRepository';
 
+@injectable()
 class ListNotesUseCase {
   constructor(
     @inject('NotesRepository')

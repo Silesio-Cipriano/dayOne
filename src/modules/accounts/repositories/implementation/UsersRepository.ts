@@ -4,7 +4,7 @@ import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUsersRepository } from '../IUsersRepository';
 
 export class UsersRepository implements IUsersRepository {
-  async findByUsername(username: string): Promise<User> {
+  async findByUsername(username: string): Promise<User | null> {
     const user = await prismaClient.user.findFirst({
       where: {
         username,
@@ -31,7 +31,7 @@ export class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  async findById(id: string): Promise<User> {
+  async findById(id: string): Promise<User | null> {
     const user = await prismaClient.user.findFirst({
       where: {
         id: id,
@@ -40,7 +40,7 @@ export class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  async findByName(name: string): Promise<User> {
+  async findByName(name: string): Promise<User | null> {
     const user = await prismaClient.user.findFirst({
       where: {
         name: name,
@@ -55,6 +55,7 @@ export class UsersRepository implements IUsersRepository {
     name,
     email,
     password,
+    image,
   }: ICreateUserDTO): Promise<User> {
     const user = await prismaClient.user.update({
       where: {
@@ -64,6 +65,7 @@ export class UsersRepository implements IUsersRepository {
         username,
         name,
         email,
+        image,
         password,
       },
     });
@@ -84,8 +86,8 @@ export class UsersRepository implements IUsersRepository {
     return users;
   }
 
-  async findByEmail(email: string): Promise<User> {
-    const user: User = await prismaClient.user.findFirst({
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await prismaClient.user.findFirst({
       where: {
         email: email,
       },

@@ -19,7 +19,7 @@
         - [x] Titulos unicos;
         - [x] Verificar se a nota existe antes apagar;
         - [x] Verificar se a nota existe antes atualizar;
-        - [x]  Nota Criada Por user;
+        - [x] Nota Criada Por user;
 
     --> User
         - [] Username unico;

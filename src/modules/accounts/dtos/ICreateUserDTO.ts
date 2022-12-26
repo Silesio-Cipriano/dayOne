@@ -5,7 +5,7 @@ interface ICreateUserDTO {
   password: string;
   email: string;
   image?: string;
-  createAt?: string;
+  createAt?: Date;
 }
 
 export { ICreateUserDTO };

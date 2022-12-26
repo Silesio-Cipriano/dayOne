@@ -1,7 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 
 const prismaClient = new PrismaClient({
-  rejectOnNotFound: true,
+  rejectOnNotFound: {
+    findUnique: true,
+  },
 });
 
 export { prismaClient };

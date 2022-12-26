@@ -1,12 +1,22 @@
 import { Router } from 'express';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 import { CreateUserController } from '../modules/accounts/useCases/createUser/CreateUserController';
+import { UploadUserAvatarController } from '../modules/accounts/useCases/uploadUserAvatar/UploadUserAvatarController';
+import { UploadUserAvatarUseCase } from '../modules/accounts/useCases/uploadUserAvatar/UploadUserAvatarUseCase';
+
+import multer from 'multer';
+import uploadConfig from '../config/upload';
 
 const usersRoutes = Router();
+const uploadAvatar = multer(uploadConfig.upload('./tmp/avatar'));
 
 const createUserController = new CreateUserController();
-
-usersRoutes.use(ensureAuthenticated );
+const uploadUserAvatarController = new UploadUserAvatarController();
 usersRoutes.post('/', createUserController.handle);
-
+usersRoutes.use(ensureAuthenticated);
+usersRoutes.patch(
+  '/avatar',
+  uploadAvatar.single('avatar'),
+  uploadUserAvatarController.handle
+);
 export { usersRoutes };
