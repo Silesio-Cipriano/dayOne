@@ -25,21 +25,25 @@ model Note {
   @@map("notes")
 }
 
+model Comment {
+  id          String    @id @default(cuid())
+  description String
+  user        User      @relation(fields: [userId], references: [id])
+  note        Note      @relation(fields: [noteId], references: [id])
+  userId      String
+  noteId      String
+  commentBy   Comment[] @relation("comments")
+  comments    Comment[] @relation("comments")
+
+  @@map("comments_note")
+}
+
 model Category {
   id    String @id @default(cuid())
   title String
   Note  Note[]
 
   @@map("categories")
-}
-
-model Comment {
-  id          String @id @default(cuid())
-  description String
-  user        User   @relation(fields: [userId], references: [id])
-  note        Note   @relation(fields: [noteId], references: [id])
-  userId      String
-  noteId      String
 }
 
 model User {
