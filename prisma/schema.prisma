@@ -32,7 +32,8 @@ model Comment {
   note        Note      @relation(fields: [noteId], references: [id])
   userId      String
   noteId      String
-  commentBy   Comment[] @relation("comments")
+  commentedId String?
+  commented   Comment?  @relation("comments", fields: [commentedId], references: [id])
   comments    Comment[] @relation("comments")
 
   @@map("comments_note")
