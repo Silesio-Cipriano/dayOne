@@ -1,9 +1,14 @@
 import { Comment } from '@prisma/client';
 import { prismaClient } from '../../../../database/prismaClient';
+import { ICreateCommentDTO } from '../../dtos/ICreateCommentDTO';
 import { ICommentsRepository } from '../ICommentsRepository';
 
 export class CommentsRepository implements ICommentsRepository {
-  async create({ description, noteId, userId }: Comment): Promise<Comment> {
+  async create({
+    description,
+    noteId,
+    userId,
+  }: ICreateCommentDTO): Promise<Comment> {
     const comment = prismaClient.comment.create({
       data: {
         userId,
