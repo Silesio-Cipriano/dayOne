@@ -1,9 +1,8 @@
 import { User } from '@prisma/client';
 import { inject, injectable } from 'tsyringe';
 import { deleteFile } from '../../../../utils/file';
-import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
-
+import cloudinary from '../../../../config/cloudinary';
 interface IRequest {
   userId: string;
   avatarFile: string;
@@ -19,10 +18,13 @@ class UploadUserAvatarUseCase {
     const user = await this.repository.findById(userId);
 
     if (user) {
-      user.image = avatarFile;
+      const url = await cloudinary.cloudinaryUpload(avatarFile);
+      console.log(url);
+
+      user.image = url;
       await this.repository.update(user);
-      await deleteFile(`./tmp/avatar/${user.image}`);
     }
+    await deleteFile(`./tmp/avatar/${avatarFile}`);
   }
 }
 
