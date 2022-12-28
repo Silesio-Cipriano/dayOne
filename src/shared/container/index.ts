@@ -5,6 +5,8 @@ import { NotesRepository } from '../../modules/notes/repositories/implementation
 import { INotesRepository } from '../../modules/notes/repositories/INotesRepository';
 import { ICategoriesRepository } from '../../modules/notes/repositories/ICategoriesRepository';
 import { CategoriesRepository } from '../../modules/notes/repositories/implementation/CategoriesRepository';
+import { ICommentsRepository } from '../../modules/notes/repositories/ICommentsRepository';
+import { CommentsRepository } from '../../modules/notes/repositories/implementation/CommentsRepository';
 
 container.registerSingleton<INotesRepository>(
   'NotesRepository',
@@ -19,4 +21,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<ICategoriesRepository>(
   'CategoriesRepository',
   CategoriesRepository
+);
+
+container.registerSingleton<ICommentsRepository>(
+  'CommentsRepository',
+  CommentsRepository
 );

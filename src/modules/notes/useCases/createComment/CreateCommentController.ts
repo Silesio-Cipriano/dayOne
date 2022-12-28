@@ -4,7 +4,8 @@ import { CreateCommentUseCase } from './CreateCommentUseCase';
 
 export class CreateCommentController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { userId, noteId, description } = request.body;
+    const { noteId, description, commentedId } = request.body;
+    const { id: userId } = request.user;
 
     const createCommentUseCase = container.resolve(CreateCommentUseCase);
 
@@ -12,6 +13,7 @@ export class CreateCommentController {
       description,
       noteId,
       userId,
+      commentedId,
     });
 
     return response.json(comment);

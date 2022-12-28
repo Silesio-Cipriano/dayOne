@@ -22,15 +22,14 @@ describe('Create Comment', () => {
   });
 
   it('should able to create a new comment', async () => {
-    const comment: ICreateCommentDTO = {
+    let comment: ICreateCommentDTO = {
       description: 'Bom ponto',
       noteId: 'test1',
       userId: '1',
+      commentedId: '',
     };
 
     const newComment = await createCommentUseCase.execute(comment);
-
-    console.log(newComment);
 
     expect(newComment).not.toBeNull();
   });

@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { Comment } from '@prisma/client';
 import { AppError } from '../../../../errors/AppError';
 import { IUsersRepository } from '../../../accounts/repositories/IUsersRepository';
@@ -7,6 +7,7 @@ import { ICreateCommentDTO } from '../../dtos/ICreateCommentDTO';
 import { ICommentsRepository } from '../../repositories/ICommentsRepository';
 import { INotesRepository } from '../../repositories/INotesRepository';
 
+@injectable()
 export class CreateCommentUseCase {
   constructor(
     @inject('CommentsRepository')
@@ -23,6 +24,7 @@ export class CreateCommentUseCase {
     description,
     noteId,
     userId,
+    commentedId,
   }: ICreateCommentDTO): Promise<Comment> {
     const note = await this.notesRepository.findById(noteId);
 
@@ -40,6 +42,7 @@ export class CreateCommentUseCase {
       noteId,
       userId,
       description,
+      commentedId,
     });
     return comment;
   }

@@ -8,13 +8,14 @@ export class CommentsRepositoryInMemory implements ICommentsRepository {
     description,
     noteId,
     userId,
+    commentedId = '',
   }: ICreateCommentDTO): Promise<Comment> {
     const comment: Comment = {
       id: '1' + Math.random() + 1000,
       description,
       noteId,
       userId,
-      commentedId: null,
+      commentedId,
     };
     this.comments.push(comment);
     return comment;

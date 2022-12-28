@@ -7,7 +7,6 @@ class ListNotesController {
     const listNotesUseCase = container.resolve(ListNotesUseCase);
     const notes = await listNotesUseCase.execute();
 
-    console.log(notes);
     return response.json(notes);
   }
 }

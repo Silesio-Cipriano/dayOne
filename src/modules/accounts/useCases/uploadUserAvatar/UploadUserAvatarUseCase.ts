@@ -19,7 +19,6 @@ class UploadUserAvatarUseCase {
 
     if (user) {
       const url = await cloudinary.cloudinaryUpload(avatarFile);
-      console.log(url);
 
       user.image = url;
       await this.repository.update(user);

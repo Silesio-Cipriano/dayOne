@@ -47,7 +47,6 @@ describe('List notes by user', () => {
 
   it('should able to list notes by user', async () => {
     const notes = await listNotesByUserUserCase.execute('4');
-    console.log(notes);
 
     expect(notes).not.toBeNull();
   });
