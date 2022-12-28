@@ -4,6 +4,8 @@
         - [x] Apagar;
         - [x] Atualizar; 
         - [x] Listar
+        - [x] criar commentario;
+
 
     --> User
         - [x] Criar note;

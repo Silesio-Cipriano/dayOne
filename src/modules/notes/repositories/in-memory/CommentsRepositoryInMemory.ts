@@ -1,10 +1,21 @@
 import { Comment } from '@prisma/client';
+import { ICreateCommentDTO } from '../../dtos/ICreateCommentDTO';
 import { ICommentsRepository } from '../ICommentsRepository';
 
 export class CommentsRepositoryInMemory implements ICommentsRepository {
   comments: Comment[] = [];
-  async create(comment: Comment): Promise<Comment> {
-    comment.id = '1' + Math.random() + 1000;
+  async create({
+    description,
+    noteId,
+    userId,
+  }: ICreateCommentDTO): Promise<Comment> {
+    const comment: Comment = {
+      id: '1' + Math.random() + 1000,
+      description,
+      noteId,
+      userId,
+      commentedId: null,
+    };
     this.comments.push(comment);
     return comment;
   }

@@ -3,7 +3,53 @@ import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUsersRepository } from '../IUsersRepository';
 
 export class UsersRepositoryInMemory implements IUsersRepository {
-  users: User[] = [];
+  users: User[] = [
+    {
+      id: '1',
+      username: 'jhonatan',
+      name: 'Jhonatan',
+      password: '******',
+      email: 'jhonatan@gmail.com',
+      image: 'user.jpg',
+      createAt: new Date(),
+    },
+    {
+      id: '2',
+      username: 'daniel',
+      name: 'Daniel',
+      password: '******',
+      email: 'daniel@gmail.com',
+      image: 'user.jpg',
+      createAt: new Date(),
+    },
+    {
+      id: '3',
+      username: 'rodrigo',
+      name: 'Rodrigo',
+      password: '******',
+      email: 'rodrigo@gmail.com',
+      image: 'user.jpg',
+      createAt: new Date(),
+    },
+    {
+      id: '4',
+      username: 'maria',
+      name: 'Maria',
+      password: '******',
+      email: 'maria@gmail.com',
+      image: 'user.jpg',
+      createAt: new Date(),
+    },
+    {
+      id: '5',
+      username: 'joaquim',
+      name: 'Joaquim',
+      password: '******',
+      email: 'joaquim@gmail.com',
+      image: 'user.jpg',
+      createAt: new Date(),
+    },
+  ];
 
   async create({
     username,

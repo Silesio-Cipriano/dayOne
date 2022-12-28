@@ -3,7 +3,53 @@ import { ICreateNoteDTO } from '../../dtos/ICreateNoteDTO';
 import { INotesRepository } from '../INotesRepository';
 
 export class NotesRepositoryInMemory implements INotesRepository {
-  notes: Note[] = [];
+  notes: Note[] = [
+    {
+      id: 'test1',
+      description: 'Created default',
+      categoryId: '1',
+      image: '',
+      title: 'My note default',
+      userId: '1',
+      createAt: new Date(),
+    },
+    {
+      id: 'test2',
+      description: 'Created note',
+      categoryId: '2',
+      image: 'image.jpg',
+      title: 'My note',
+      userId: '2',
+      createAt: new Date(),
+    },
+    {
+      id: 'test3',
+      description: 'Created default note',
+      categoryId: '3',
+      image: 'image2.jpg',
+      title: 'My default note',
+      userId: '3',
+      createAt: new Date(),
+    },
+    {
+      id: 'test4',
+      description: 'Created another note',
+      categoryId: '4',
+      image: 'image3.jpg',
+      title: 'My another note',
+      userId: '4',
+      createAt: new Date(),
+    },
+    {
+      id: 'test5',
+      description: 'Created last note',
+      categoryId: '5',
+      image: 'image4.jpg',
+      title: 'My last note',
+      userId: '5',
+      createAt: new Date(),
+    },
+  ];
 
   async create({
     userId,
