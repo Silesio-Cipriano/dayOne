@@ -13,7 +13,14 @@ export class UpdateNoteUseCase {
     title,
     description,
     userId,
-  }: ICreateNoteDTO): Promise<Note> {
-    return await this.repository.update({ id, title, description, userId });
+    categoryId,
+  }: ICreateNoteDTO): Promise<Note | null> {
+    return await this.repository.update({
+      id,
+      title,
+      description,
+      userId,
+      categoryId,
+    });
   }
 }
