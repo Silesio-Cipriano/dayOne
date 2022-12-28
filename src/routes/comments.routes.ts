@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 import { CreateCommentController } from '../modules/notes/useCases/createComment/CreateCommentController';
-import { ListCommentsByNoteController } from '../modules/notes/useCases/listCommentByNote/ListCommentByNoteController';
+import { ListCommentsByNoteController } from '../modules/notes/useCases/listCommentByNote/ListCommentsByNoteController';
 
 const commentsRoutes = Router();
 

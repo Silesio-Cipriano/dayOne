@@ -11,30 +11,61 @@ datasource db {
 }
 
 model Note {
-  id          String    @id @default(cuid())
-  title       String
-  description String
-  image       String
-  createAt    DateTime  @default(now())
-  User        User      @relation(fields: [userId], references: [id])
-  userId      String
-  category    Category  @relation(fields: [categoryId], references: [id])
-  categoryId  String
-  Comment     Comment[]
+  id            String          @id @default(cuid())
+  title         String
+  description   String
+  image         String
+  createAt      DateTime        @default(now())
+  User          User            @relation(fields: [userId], references: [id])
+  userId        String
+  category      Category        @relation(fields: [categoryId], references: [id])
+  categoryId    String
+  Comment       Comment[]
+  Reaction_note Reaction_note[]
 
   @@map("notes")
 }
 
+model Reaction_note {
+  id     String             @id @default(cuid())
+  note   Note               @relation(fields: [noteId], references: [id])
+  type   Reaction_note_type @default(LOVE)
+  noteId String
+  user   User               @relation(fields: [userId], references: [id])
+  userId String
+}
+
+enum Reaction_note_type {
+  LOVE
+  LIKE
+}
+
+model Reaction_Comment {
+  id        String                @id @default(cuid())
+  type      Reaction_Comment_type @default(UP)
+  comment   Comment               @relation(fields: [commentId], references: [id])
+  user      User                  @relation(fields: [userId], references: [id])
+  userId    String
+  commentId String
+}
+
+enum Reaction_Comment_type {
+  UP
+  DOWN
+}
+
 model Comment {
-  id          String    @id @default(cuid())
+  id          String @id @default(cuid())
   description String
-  user        User      @relation(fields: [userId], references: [id])
-  note        Note      @relation(fields: [noteId], references: [id])
+  user        User   @relation(fields: [userId], references: [id])
+  note        Note   @relation(fields: [noteId], references: [id])
   userId      String
   noteId      String
-  commentedId String?
-  commented   Comment?  @relation("comments", fields: [commentedId], references: [id])
-  comments    Comment[] @relation("comments")
+
+  commentedId      String?
+  commented        Comment?           @relation("comments", fields: [commentedId], references: [id])
+  comments         Comment[]          @relation("comments")
+  Reaction_Comment Reaction_Comment[]
 
   @@map("comments_note")
 }
@@ -48,15 +79,17 @@ model Category {
 }
 
 model User {
-  id       String    @id @default(cuid())
-  username String
-  name     String
-  password String
-  email    String    @unique
-  image    String
-  createAt DateTime  @default(now())
-  notes    Note[]
-  Comment  Comment[]
+  id               String             @id @default(cuid())
+  username         String
+  name             String
+  password         String
+  email            String             @unique
+  image            String
+  createAt         DateTime           @default(now())
+  notes            Note[]
+  Comment          Comment[]
+  Reaction_note    Reaction_note[]
+  Reaction_Comment Reaction_Comment[]
 
   @@map("users")
 }
