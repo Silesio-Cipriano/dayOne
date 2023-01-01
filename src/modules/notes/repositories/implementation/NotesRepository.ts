@@ -17,7 +17,6 @@ class NotesRepository implements INotesRepository {
         userId,
         title,
         description,
-        image,
       },
     });
 

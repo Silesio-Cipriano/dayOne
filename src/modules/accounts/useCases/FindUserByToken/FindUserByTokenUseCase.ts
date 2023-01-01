@@ -7,7 +7,7 @@ type IUser = {
   username: string;
   name: string;
   email: string;
-  image: string;
+  avatar: string;
   createAt: Date;
 };
 @injectable()
@@ -21,7 +21,13 @@ export class FindUserByTokenUseCase {
     const user = await this.usersRepository.findById(userId);
     if (!user) throw new AppError('User not exist', 401);
 
-    const userFormatted: IUser = user;
-    return user;
+    const { username, name, email, avatar, createAt } = user;
+    return {
+      username,
+      name,
+      email,
+      avatar,
+      createAt,
+    };
   }
 }
