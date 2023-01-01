@@ -10,7 +10,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       name: 'Jhonatan',
       password: '******',
       email: 'jhonatan@gmail.com',
-      image: 'user.jpg',
+      avatar: 'user.jpg',
       createAt: new Date(),
     },
     {
@@ -19,7 +19,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       name: 'Daniel',
       password: '******',
       email: 'daniel@gmail.com',
-      image: 'user.jpg',
+      avatar: 'user.jpg',
       createAt: new Date(),
     },
     {
@@ -28,7 +28,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       name: 'Rodrigo',
       password: '******',
       email: 'rodrigo@gmail.com',
-      image: 'user.jpg',
+      avatar: 'user.jpg',
       createAt: new Date(),
     },
     {
@@ -37,7 +37,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       name: 'Maria',
       password: '******',
       email: 'maria@gmail.com',
-      image: 'user.jpg',
+      avatar: 'user.jpg',
       createAt: new Date(),
     },
     {
@@ -46,7 +46,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       name: 'Joaquim',
       password: '******',
       email: 'joaquim@gmail.com',
-      image: 'user.jpg',
+      avatar: 'user.jpg',
       createAt: new Date(),
     },
   ];
@@ -65,7 +65,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       email,
       password,
       createAt: new Date(),
-      image: '',
+      avatar: '',
     };
     this.users.push(user);
 
@@ -84,7 +84,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       name: '',
       password: '',
       email: '',
-      image: '',
+      avatar: '',
       createAt: new Date(),
     };
     let oldUser = this.users.find((category) => category.id === name);
