@@ -84,7 +84,8 @@ model User {
   name             String
   password         String
   email            String             @unique
-  image            String
+  avatar           String
+  birthday          String
   createAt         DateTime           @default(now())
   notes            Note[]
   Comment          Comment[]

@@ -18,6 +18,8 @@ export class UsersRepository implements IUsersRepository {
     name,
     email,
     password,
+    birthday,
+    avatar = '',
   }: ICreateUserDTO): Promise<User> {
     const user = await prismaClient.user.create({
       data: {
@@ -25,7 +27,8 @@ export class UsersRepository implements IUsersRepository {
         name,
         password,
         email,
-        image: '',
+        avatar,
+        birthday,
       },
     });
     return user;
@@ -55,7 +58,7 @@ export class UsersRepository implements IUsersRepository {
     name,
     email,
     password,
-    image,
+    avatar,
   }: ICreateUserDTO): Promise<User> {
     const user = await prismaClient.user.update({
       where: {
@@ -65,7 +68,7 @@ export class UsersRepository implements IUsersRepository {
         username,
         name,
         email,
-        image,
+        avatar,
         password,
       },
     });

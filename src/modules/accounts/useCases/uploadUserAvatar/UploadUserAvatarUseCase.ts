@@ -20,7 +20,7 @@ class UploadUserAvatarUseCase {
     if (user) {
       const url = await cloudinary.cloudinaryUpload(avatarFile);
 
-      user.image = url;
+      user.avatar = url;
       await this.repository.update(user);
     }
     await deleteFile(`./tmp/avatar/${avatarFile}`);

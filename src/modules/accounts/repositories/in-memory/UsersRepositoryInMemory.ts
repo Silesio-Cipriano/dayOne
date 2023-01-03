@@ -12,6 +12,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       email: 'jhonatan@gmail.com',
       avatar: 'user.jpg',
       createAt: new Date(),
+      birthday: '',
     },
     {
       id: '2',
@@ -21,6 +22,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       email: 'daniel@gmail.com',
       avatar: 'user.jpg',
       createAt: new Date(),
+      birthday: '',
     },
     {
       id: '3',
@@ -30,6 +32,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       email: 'rodrigo@gmail.com',
       avatar: 'user.jpg',
       createAt: new Date(),
+      birthday: '',
     },
     {
       id: '4',
@@ -39,6 +42,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       email: 'maria@gmail.com',
       avatar: 'user.jpg',
       createAt: new Date(),
+      birthday: '',
     },
     {
       id: '5',
@@ -48,6 +52,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       email: 'joaquim@gmail.com',
       avatar: 'user.jpg',
       createAt: new Date(),
+      birthday: '',
     },
   ];
 
@@ -66,6 +71,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       password,
       createAt: new Date(),
       avatar: '',
+      birthday: '',
     };
     this.users.push(user);
 
@@ -86,6 +92,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       email: '',
       avatar: '',
       createAt: new Date(),
+      birthday: '',
     };
     let oldUser = this.users.find((category) => category.id === name);
     user = oldUser ? oldUser : user;

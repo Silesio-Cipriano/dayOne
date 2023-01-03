@@ -17,7 +17,8 @@ export class CreateUserUseCase {
     password,
     createAt,
     id,
-    image,
+    avatar,
+    birthday,
   }: ICreateUserDTO) {
     const usernameExist = await this.repository.findByUsername(username);
 
@@ -30,6 +31,8 @@ export class CreateUserUseCase {
       name,
       email,
       password: passwordHash,
+      birthday,
+      avatar,
     });
     return user;
   }
