@@ -12,6 +12,7 @@ describe('Create Note', () => {
     description: 'new note',
     title: 'Create Note',
     userId: '1',
+    reaction_EmojiId: '',
   };
 
   beforeEach(async () => {

@@ -10,6 +10,8 @@ class NotesRepository implements INotesRepository {
     description,
     image = '',
     categoryId,
+    reaction_EmojiId,
+    status,
   }: ICreateNoteDTO): Promise<Note> {
     const note = await prismaClient.note.create({
       data: {
@@ -18,6 +20,8 @@ class NotesRepository implements INotesRepository {
         title,
         description,
         image,
+        reaction_EmojiId,
+        status,
       },
     });
 

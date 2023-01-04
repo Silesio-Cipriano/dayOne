@@ -12,6 +12,8 @@ export class NotesRepositoryInMemory implements INotesRepository {
       title: 'My note default',
       userId: '1',
       createAt: new Date(),
+      status: 'PRIVATE',
+      reaction_EmojiId: '1',
     },
     {
       id: 'test2',
@@ -21,6 +23,8 @@ export class NotesRepositoryInMemory implements INotesRepository {
       title: 'My note',
       userId: '2',
       createAt: new Date(),
+      status: 'PRIVATE',
+      reaction_EmojiId: '1',
     },
     {
       id: 'test3',
@@ -30,6 +34,8 @@ export class NotesRepositoryInMemory implements INotesRepository {
       title: 'My default note',
       userId: '3',
       createAt: new Date(),
+      status: 'PRIVATE',
+      reaction_EmojiId: '1',
     },
     {
       id: 'test4',
@@ -39,6 +45,8 @@ export class NotesRepositoryInMemory implements INotesRepository {
       title: 'My another note',
       userId: '4',
       createAt: new Date(),
+      status: 'PRIVATE',
+      reaction_EmojiId: '1',
     },
     {
       id: 'test5',
@@ -47,6 +55,8 @@ export class NotesRepositoryInMemory implements INotesRepository {
       image: 'image4.jpg',
       title: 'My last note',
       userId: '5',
+      status: 'PRIVATE',
+      reaction_EmojiId: '1',
       createAt: new Date(),
     },
   ];

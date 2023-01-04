@@ -11,23 +11,30 @@ datasource db {
 }
 
 model Note {
-  id            String          @id @default(cuid())
-  title         String
-  description   String
-  image         String
-  createAt      DateTime        @default(now())
-  User          User            @relation(fields: [userId], references: [id])
-  userId        String
-  category      Category        @relation(fields: [categoryId], references: [id])
-  categoryId    String
-  Comment       Comment[]
-  Reaction_note Reaction_note[]
+  id               String           @id @default(uuid())
+  title            String
+  description      String
+  image            String
+  createAt         DateTime         @default(now())
+  User             User             @relation(fields: [userId], references: [id])
+  userId           String
+  category         Category?        @relation(fields: [categoryId], references: [id])
+  categoryId       String?
+  status           Status_note_type @default(PRIVATE)
+  Comment          Comment[]
+  Reaction_note    Reaction_note[]
+  reaction_EmojiId String
 
   @@map("notes")
 }
 
+model Reaction_Emoji {
+  id    String @id @default(uuid())
+  emoji String
+}
+
 model Reaction_note {
-  id     String             @id @default(cuid())
+  id     String             @id @default(uuid())
   note   Note               @relation(fields: [noteId], references: [id])
   type   Reaction_note_type @default(LOVE)
   noteId String
@@ -40,8 +47,13 @@ enum Reaction_note_type {
   LIKE
 }
 
+enum Status_note_type {
+  PRIVATE
+  PUBLIC
+}
+
 model Reaction_Comment {
-  id        String                @id @default(cuid())
+  id        String                @id @default(uuid())
   type      Reaction_Comment_type @default(UP)
   comment   Comment               @relation(fields: [commentId], references: [id])
   user      User                  @relation(fields: [userId], references: [id])
@@ -55,7 +67,7 @@ enum Reaction_Comment_type {
 }
 
 model Comment {
-  id          String @id @default(cuid())
+  id          String @id @default(uuid())
   description String
   user        User   @relation(fields: [userId], references: [id])
   note        Note   @relation(fields: [noteId], references: [id])
@@ -71,7 +83,7 @@ model Comment {
 }
 
 model Category {
-  id    String @id @default(cuid())
+  id    String @id @default(uuid())
   title String
   Note  Note[]
 
@@ -79,13 +91,13 @@ model Category {
 }
 
 model User {
-  id               String             @id @default(cuid())
+  id               String             @id @default(uuid())
   username         String
   name             String
   password         String
   email            String             @unique
   avatar           String
-  birthday          String
+  birthday         String
   createAt         DateTime           @default(now())
   notes            Note[]
   Comment          Comment[]

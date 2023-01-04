@@ -8,7 +8,7 @@ import { AppError } from '../../../../errors/AppError';
 export class CreateUserUseCase {
   constructor(
     @inject('UsersRepository')
-    private repository: IUsersRepository
+    private notesRepository: IUsersRepository
   ) {}
   async execute({
     username,
@@ -20,13 +20,13 @@ export class CreateUserUseCase {
     avatar,
     birthday,
   }: ICreateUserDTO) {
-    const usernameExist = await this.repository.findByUsername(username);
+    const emailExist = await this.notesRepository.findByEmail(email);
 
-    if (usernameExist) throw new AppError('Username already exist!', 401);
+    if (emailExist) throw new AppError('Email already used!', 404);
 
     const passwordHash = await hash(password, 8);
 
-    const user = await this.repository.create({
+    const user = await this.notesRepository.create({
       username,
       name,
       email,
