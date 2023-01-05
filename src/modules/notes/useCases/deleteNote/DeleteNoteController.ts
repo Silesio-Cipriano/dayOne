@@ -4,7 +4,9 @@ import { DeleteNoteUseCase } from './DeleteNoteUseCase';
 
 export class DeleteNoteController {
   async handle(request: Request, response: Response) {
+    const { id: userId } = request.user;
     const { id } = request.params;
+
     const deleteNoteUseCase = container.resolve(DeleteNoteUseCase);
 
     await deleteNoteUseCase.execute(id);

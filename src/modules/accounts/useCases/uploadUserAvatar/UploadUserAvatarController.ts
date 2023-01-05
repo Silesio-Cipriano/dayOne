@@ -7,6 +7,8 @@ class UploadUserAvatarController {
     const { id } = request.user;
     const avatarFile = request.file?.filename + '';
 
+    console.log('Aqui', avatarFile);
+
     const uploadUserAvatarUseCase = container.resolve(UploadUserAvatarUseCase);
 
     await uploadUserAvatarUseCase.execute({ userId: id, avatarFile });

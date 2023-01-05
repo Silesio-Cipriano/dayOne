@@ -18,10 +18,12 @@ const findUserByTokenController = new FindUserByTokenController();
 
 usersRoutes.post('/', createUserController.handle);
 usersRoutes.use(ensureAuthenticated);
-usersRoutes.get('/userByToken', findUserByTokenController.handle);
 usersRoutes.patch(
   '/avatar',
   uploadAvatar.single('avatar'),
   uploadUserAvatarController.handle
 );
+
+usersRoutes.get('/userByToken', findUserByTokenController.handle);
+
 export { usersRoutes };

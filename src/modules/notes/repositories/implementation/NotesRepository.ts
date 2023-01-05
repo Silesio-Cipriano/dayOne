@@ -12,9 +12,11 @@ class NotesRepository implements INotesRepository {
     categoryId,
     reaction_EmojiId,
     status,
+    authorOfTitle,
   }: ICreateNoteDTO): Promise<Note> {
     const note = await prismaClient.note.create({
       data: {
+        authorOfTitle,
         categoryId,
         userId,
         title,

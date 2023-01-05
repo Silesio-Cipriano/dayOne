@@ -18,8 +18,10 @@ class CreateNoteUseCase {
     categoryId,
     reaction_EmojiId,
     status,
+    authorOfTitle,
   }: ICreateNoteDTO): Promise<Note> {
     const note = await this.notesRepository.create({
+      authorOfTitle,
       title,
       description,
       userId,

@@ -28,6 +28,8 @@ export class ListNotesByUserUserCase {
         notesWithReactions.push({ note: note, reaction_Emoji: emoji });
       });
     }
+
+    notesWithReactions.reverse();
     return notesWithReactions;
   }
 }

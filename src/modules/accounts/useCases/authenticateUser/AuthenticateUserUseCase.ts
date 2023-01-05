@@ -13,6 +13,7 @@ interface IResponse {
     name: string;
     email: string;
     username: string;
+    avatar: string;
     birthday: string;
   };
   token: string;
@@ -43,6 +44,7 @@ export class AuthenticateUserUseCase {
       user: {
         name: user.name,
         email: user.email,
+        avatar: user.avatar,
         username: user.username,
         birthday: user.birthday,
       },

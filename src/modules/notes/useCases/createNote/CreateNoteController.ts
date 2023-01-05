@@ -4,8 +4,10 @@ import { CreateNoteUseCase } from './CreateNoteUseCase';
 
 class CreateNoteController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { title, description, categoryId, reaction_EmojiId } = request.body;
+    const { authorOfTitle, title, description, categoryId, reaction_EmojiId } =
+      request.body;
     const { id: userId } = request.user;
+    console.log('Emoji', reaction_EmojiId);
     const createNoteUseCase = container.resolve(CreateNoteUseCase);
     const note = await createNoteUseCase.execute({
       title,
@@ -13,6 +15,7 @@ class CreateNoteController {
       userId,
       categoryId,
       reaction_EmojiId,
+      authorOfTitle,
     });
 
     return response.json(note);

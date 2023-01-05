@@ -9,6 +9,7 @@ interface ICreateNoteDTO {
   categoryId: string;
   status?: Status_note_type;
   reaction_EmojiId: string;
+  authorOfTitle: string;
 }
 
 export { ICreateNoteDTO };
