@@ -40,7 +40,13 @@ class NotesRepository implements INotesRepository {
     return note;
   }
 
-  async update({ id, title, description }: ICreateNoteDTO): Promise<Note> {
+  async update({
+    id,
+    title,
+    description,
+    authorOfTitle,
+    reaction_EmojiId,
+  }: ICreateNoteDTO): Promise<Note> {
     const note = await prismaClient.note.update({
       where: {
         id: id,
@@ -48,6 +54,8 @@ class NotesRepository implements INotesRepository {
       data: {
         title,
         description,
+        authorOfTitle,
+        reaction_EmojiId,
       },
     });
 

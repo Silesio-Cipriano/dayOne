@@ -5,8 +5,12 @@ import { UpdateNoteUseCase } from './UpdateNoteUseCase';
 export class UpdateNoteController {
   async handle(request: Request, response: Response) {
     const { id } = request.params;
-    const { title, description, categoryId } = request.body;
+    const { title, description, categoryId, authorOfTitle, reaction_EmojiId } =
+      request.body;
+
     const { id: userId } = request.user;
+
+    console.log(authorOfTitle);
 
     const updateNote = container.resolve(UpdateNoteUseCase);
 
@@ -16,6 +20,8 @@ export class UpdateNoteController {
       title,
       description,
       categoryId,
+      authorOfTitle,
+      reaction_EmojiId,
     });
 
     return response.json(note);

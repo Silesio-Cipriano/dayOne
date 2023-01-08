@@ -22,7 +22,7 @@ export class FindNoteUseCase {
   ) {}
   async execute(id: string): Promise<NoteAndReaction> {
     const note = await this.notesRepository.findById(id);
-    
+
     let emoji: Reaction_emoji = emojis[Number(note?.reaction_EmojiId)];
 
     if (!note) throw new AppError("Note don't exist");
@@ -32,7 +32,6 @@ export class FindNoteUseCase {
       reaction_Emoji: emoji,
     };
 
-    console.log(note);
     return noteWithReaction;
   }
 }

@@ -1,8 +1,9 @@
 import { Note } from '@prisma/client';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { ICreateNoteDTO } from '../../dtos/ICreateNoteDTO';
 import { INotesRepository } from '../../repositories/INotesRepository';
 
+@injectable()
 export class UpdateNoteUseCase {
   constructor(
     @inject('NotesRepository')
@@ -14,6 +15,8 @@ export class UpdateNoteUseCase {
     description,
     userId,
     categoryId,
+    authorOfTitle,
+    reaction_EmojiId,
   }: ICreateNoteDTO): Promise<Note | null> {
     return await this.repository.update({
       id,
@@ -21,6 +24,8 @@ export class UpdateNoteUseCase {
       description,
       userId,
       categoryId,
+      authorOfTitle,
+      reaction_EmojiId,
     });
   }
 }

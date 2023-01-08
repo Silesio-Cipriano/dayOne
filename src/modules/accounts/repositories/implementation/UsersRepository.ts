@@ -57,6 +57,7 @@ export class UsersRepository implements IUsersRepository {
     username,
     name,
     email,
+    birthday,
     password,
     avatar,
   }: ICreateUserDTO): Promise<User> {
@@ -68,8 +69,21 @@ export class UsersRepository implements IUsersRepository {
         username,
         name,
         email,
+        birthday,
         avatar,
         password,
+      },
+    });
+    return user;
+  }
+
+  async updateAvatar({ id, avatar }: ICreateUserDTO): Promise<User> {
+    const user = await prismaClient.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        avatar,
       },
     });
     return user;

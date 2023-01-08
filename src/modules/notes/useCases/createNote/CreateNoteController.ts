@@ -7,7 +7,6 @@ class CreateNoteController {
     const { authorOfTitle, title, description, categoryId, reaction_EmojiId } =
       request.body;
     const { id: userId } = request.user;
-    console.log('Emoji', reaction_EmojiId);
     const createNoteUseCase = container.resolve(CreateNoteUseCase);
     const note = await createNoteUseCase.execute({
       title,

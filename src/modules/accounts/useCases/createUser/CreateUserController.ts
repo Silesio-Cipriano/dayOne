@@ -6,7 +6,6 @@ export class CreateUserController {
   async handle(request: Request, response: Response) {
     const { username, name, email, password, birthday } = request.body;
 
-    console.log(name, email, password, birthday);
     const createUser = container.resolve(CreateUserUseCase);
     const user = await createUser.execute({
       username: '',

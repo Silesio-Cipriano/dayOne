@@ -7,11 +7,12 @@ class UploadUserAvatarController {
     const { id } = request.user;
     const avatarFile = request.file?.filename + '';
 
-    console.log('Aqui', avatarFile);
-
     const uploadUserAvatarUseCase = container.resolve(UploadUserAvatarUseCase);
 
-    await uploadUserAvatarUseCase.execute({ userId: id, avatarFile });
+    await uploadUserAvatarUseCase.execute({
+      userId: id,
+      avatarFile,
+    });
 
     return response.status(204).send();
   }
