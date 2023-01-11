@@ -28,7 +28,6 @@ class CreateNoteUseCase {
       status,
     });
 
-    note.status;
     return note;
   }
 }
