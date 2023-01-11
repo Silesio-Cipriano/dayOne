@@ -6,7 +6,7 @@ interface ICreateNoteDTO {
   description: string;
   image?: string;
   userId: string;
-  categoryId: string;
+  categoryId?: string;
   status?: Status_note_type;
   reaction_EmojiId: string;
   authorOfTitle: string;

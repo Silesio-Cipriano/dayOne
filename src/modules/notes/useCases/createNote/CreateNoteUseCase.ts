@@ -15,7 +15,6 @@ class CreateNoteUseCase {
     title,
     description,
     userId,
-    categoryId,
     reaction_EmojiId,
     status,
     authorOfTitle,
@@ -25,7 +24,6 @@ class CreateNoteUseCase {
       title,
       description,
       userId,
-      categoryId,
       reaction_EmojiId,
       status,
     });

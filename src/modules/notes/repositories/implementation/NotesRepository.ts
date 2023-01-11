@@ -9,7 +9,6 @@ class NotesRepository implements INotesRepository {
     title,
     description,
     image = '',
-    categoryId,
     reaction_EmojiId,
     status,
     authorOfTitle,
@@ -17,7 +16,6 @@ class NotesRepository implements INotesRepository {
     const note = await prismaClient.note.create({
       data: {
         authorOfTitle,
-        categoryId,
         userId,
         title,
         description,
