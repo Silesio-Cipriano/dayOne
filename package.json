@@ -24,6 +24,7 @@
   "dependencies": {
     "@prisma/client": "^4.5.0",
     "@types/cors": "^2.8.13",
+    "@types/nodemailer": "^6.4.7",
     "bcrypt": "*",
     "cloudinary": "^1.33.0",
     "cors": "^2.8.5",
@@ -33,6 +34,7 @@
     "imgur": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.8.0",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.7.0"
   }

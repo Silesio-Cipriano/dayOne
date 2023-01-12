@@ -3,9 +3,11 @@ import { IUsersRepository } from '../../repositories/IUsersRepository';
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { AppError } from '../../../../errors/AppError';
+import { sendMail } from '../../../../config/email';
 interface IRequest {
   email: string;
   password: string;
+  urlOrigin: string;
 }
 
 interface IResponse {
@@ -25,7 +27,7 @@ export class AuthenticateUserUseCase {
     @inject('UsersRepository')
     private repository: IUsersRepository
   ) {}
-  async execute({ email, password }: IRequest): Promise<IResponse> {
+  async execute({ email, password, urlOrigin }: IRequest): Promise<IResponse> {
     const user = await this.repository.findByEmail(email);
 
     if (!user) throw new AppError('Email or password incorrect', 401);
@@ -38,6 +40,14 @@ export class AuthenticateUserUseCase {
       subject: user.id,
       expiresIn: '1d',
     });
+
+    if (user.status === 'BLOCKED') {
+      const link = urlOrigin + '/signUp?xns=' + token;
+
+      sendMail({ email, name: user.name, link });
+
+      throw new AppError('The email was not validated', 401);
+    }
 
     const tokenReturn: IResponse = {
       token,

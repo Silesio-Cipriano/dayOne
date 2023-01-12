@@ -7,6 +7,7 @@ interface ICreateUserDTO {
   avatar?: string;
   createAt?: Date;
   birthday: string;
+  urlOrigin?: string;
 }
 
 export { ICreateUserDTO };

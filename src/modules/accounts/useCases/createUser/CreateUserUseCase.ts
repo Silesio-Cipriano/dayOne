@@ -3,7 +3,10 @@ import { inject, injectable } from 'tsyringe';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 import { hash } from 'bcrypt';
+import { sign } from 'jsonwebtoken';
+
 import { AppError } from '../../../../errors/AppError';
+import { sendMail } from '../../../../config/email';
 @injectable()
 export class CreateUserUseCase {
   constructor(
@@ -19,6 +22,7 @@ export class CreateUserUseCase {
     id,
     avatar,
     birthday,
+    urlOrigin,
   }: ICreateUserDTO) {
     const emailExist = await this.notesRepository.findByEmail(email);
 
@@ -34,6 +38,15 @@ export class CreateUserUseCase {
       birthday,
       avatar,
     });
+
+    const tokenJwt = sign({}, 'c7d840cf65a5eb1642510a2670f0cd12', {
+      subject: '1',
+      expiresIn: '1d',
+    });
+
+    const link = urlOrigin + '/signUp?xns=' + tokenJwt;
+
+    sendMail({ email, name, link });
     return user;
   }
 }

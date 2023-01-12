@@ -4,6 +4,16 @@ import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUsersRepository } from '../IUsersRepository';
 
 export class UsersRepository implements IUsersRepository {
+  async updateStatusToActive(id: string): Promise<void> {
+    await prismaClient.user.update({
+      where: {
+        id,
+      },
+      data: {
+        status: 'ACTIVE',
+      },
+    });
+  }
   async findByUsername(username: string): Promise<User | null> {
     const user = await prismaClient.user.findFirst({
       where: {

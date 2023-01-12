@@ -104,6 +104,13 @@ model User {
   Comment          Comment[]
   Reaction_note    Reaction_note[]
   Reaction_Comment Reaction_Comment[]
+  status           User_Status   @default(BLOCKED)
 
   @@map("users")
+}
+
+enum User_Status {
+  ACTIVE
+  BLOCKED
+  SUSPENDED
 }
