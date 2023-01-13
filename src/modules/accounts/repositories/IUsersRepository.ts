@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { User, User_Status } from '@prisma/client';
 import { ICreateUserDTO } from '../dtos/ICreateUserDTO';
 
 export interface IUsersRepository {
@@ -7,7 +7,7 @@ export interface IUsersRepository {
   findByName(name: string): Promise<User | null>;
   findByUsername(username: string): Promise<User | null>;
   update(data: ICreateUserDTO): Promise<User | null>;
-  updateStatusToActive(id: string): Promise<void>;
+  updateStatus(userid: string, status: User_Status): Promise<void>;
   delete(id: string): Promise<void>;
   findAll(): Promise<User[]>;
   findByEmail(email: string): Promise<User | null>;

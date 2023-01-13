@@ -1,16 +1,16 @@
-import { User } from '@prisma/client';
+import { User, User_Status } from '@prisma/client';
 import { prismaClient } from '../../../../database/prismaClient';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUsersRepository } from '../IUsersRepository';
 
 export class UsersRepository implements IUsersRepository {
-  async updateStatusToActive(id: string): Promise<void> {
+  async updateStatus(userid: string, status: User_Status): Promise<void> {
     await prismaClient.user.update({
       where: {
-        id,
+        id: userid,
       },
       data: {
-        status: 'ACTIVE',
+        status,
       },
     });
   }
