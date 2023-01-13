@@ -4,15 +4,18 @@ import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUsersRepository } from '../IUsersRepository';
 
 export class UsersRepository implements IUsersRepository {
-  async updateStatus(userid: string, status: User_Status): Promise<void> {
-    await prismaClient.user.update({
+  async updateStatus(userId: string, status: User_Status): Promise<void> {
+    console.log('UserId:', userId);
+    console.log('Status:', status);
+    const user = await prismaClient.user.update({
       where: {
-        id: userid,
+        id: userId,
       },
       data: {
         status,
       },
     });
+    return;
   }
   async findByUsername(username: string): Promise<User | null> {
     const user = await prismaClient.user.findFirst({

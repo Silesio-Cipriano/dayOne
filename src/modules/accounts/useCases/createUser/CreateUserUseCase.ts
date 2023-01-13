@@ -44,7 +44,7 @@ export class CreateUserUseCase {
       expiresIn: '1d',
     });
 
-    const link = urlOrigin + '/signUp?xns=' + tokenJwt;
+    const link = urlOrigin + '/signUp?xns=' + user.id;
 
     sendMail({ email, name, link });
     return user;
