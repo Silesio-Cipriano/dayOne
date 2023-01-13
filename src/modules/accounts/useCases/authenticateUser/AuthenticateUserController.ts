@@ -4,11 +4,7 @@ import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
 export class AuthenticateUserController {
   async handle(request: Request, response: Response) {
-    const url = new URL(
-      `${request.protocol}://${request.get('host')}${request.originalUrl}`
-    );
-
-    const urlOrigin = url.origin;
+    const urlOrigin = request.headers.origin + '';
 
     const { email, password } = request.body;
 

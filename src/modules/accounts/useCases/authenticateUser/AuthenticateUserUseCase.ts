@@ -42,7 +42,7 @@ export class AuthenticateUserUseCase {
     });
 
     if (user.status === 'BLOCKED') {
-      const link = urlOrigin + '/signUp?xns=' + user.id;
+      const link = urlOrigin + '/signIn?xns=' + user.id;
 
       sendMail({ email, name: user.name, link });
 
